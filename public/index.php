@@ -11,5 +11,9 @@
     <a href="reservation_list.php">予約一覧</a>
     <a href="chat.php">チャット</a>
   </nav>
+
+  <div>
+    トップページ
+  </div>
 </body>
 </html>
