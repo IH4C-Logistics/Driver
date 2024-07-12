@@ -5,7 +5,7 @@ try{
     require('db/dbpdo.php');
     session_start();
     //物流IDがSESSIONに登録されているか確認
-    //$_SESSION['u_name'] = "ドライバーA";
+    $_SESSION['u_name'] = "ドライバーA";
     if(isset($_SESSION['u_name'])){
         $buturyu_name = $_SESSION['u_name'];
         $sql = "SELECT u_Id FROM t_user WHERE u_Name = '". $buturyu_name ."'";
@@ -58,28 +58,33 @@ try{
 </head>
 <body>
 
-    <nav class="header">
-        <a href="index.php">戻る</a>
-    </nav>
-
-    <main>
-        <div class="driverselect">
+    <header class="header">
+        <div class="logo"><a href="index.php"><img src="images/kkrn_icon_modoru_16.png" alt="return" class="return"></a></div>
+        <div class="nav">
+        <input id="drawer_input" class="drawer_hidden" type="checkbox">
+        <label for="drawer_input" class="drawer_open"><span></span></label>
+        <nav class="nav_content">
+            <div class="nav_list">
             <?php 
             //物流拠点選択
             foreach($user as $item):?>
+            <?php $user = $item['u_Id']; ?>
+                <div class="nav_item">
+                    <a href="chat.php?userID=<?php echo $user; ?>" class="button">
+                        <h4><?php echo($item['u_Name']); ?></h4>
+                        <p>最新のチャット入れたいね♡</p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
             <div>
-                <?php $user = $item['u_Id']; ?>
-                <a href="chat.php?userID=<?php echo $user; ?>" class="button">
-                    <h4><?php echo($item['u_Name']); ?></h4>
-                    <p>最新のチャット入れたいね♡</p>
-                </a>
-            </div>
-        <?php
-            endforeach;
-            ?>
+        </nav>
         </div>
+    </header>
+
+    <main>
         
         <div class="chat-container">
+            <h3 class="chat_user">物流拠点A</h3>
             <div class="chcon" id="chatContent">
                 <?php 
                 //chat表示

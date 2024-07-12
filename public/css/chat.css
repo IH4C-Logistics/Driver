@@ -7,88 +7,177 @@ body {
   width: 100%;
   height: 100vh;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 .header {
   position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: start;
-  background-color: #e0e0e0;
+  align-items: center;
+  padding: 0 0 0 0;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header a {
-  padding: 20px;
-  text-decoration: none;
-  color: #000;
-  font-size: large;
-  font-weight: bold;
-}
-.header a:hover {
-  /* background-color: #999; */
-  color: #999;
-}
-
-main {
-  display: flex;
-  width: 80%;
-  height: 80%;
-  padding-top: 100px;
-  margin: auto;
-  justify-content: space-around;
-  align-items: start;
-}
-
-.driverselect {
-  width: 15%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.driverselect div {
+.logo {
+  width: 60px;
   height: 60px;
-  width: 100%;
-  border-bottom: solid 1px #999;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
 }
-
-.driverselect a {
+.logo a {
+  display: block;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
-  padding-left: 10px;
   text-decoration: none;
   color: #333;
+}
+
+.return {
+  width: 40px;
+  height: 40px;
+}
+
+.drawer_hidden {
+  display: none;
+}
+
+.drawer_open {
+  display: flex;
+  height: 60px;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.drawer_open span,
+.drawer_open span:before,
+.drawer_open span:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background: #333;
+  transition: 0.5s;
+  position: absolute;
+}
+
+.drawer_open span:before {
+  bottom: 8px;
+}
+
+.drawer_open span:after {
+  top: 8px;
+}
+
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+.nav_content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  z-index: 99;
+  background: #eee;
+  transition: 0.5s;
+}
+
+.nav_list {
+  list-style: none;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.nav_item {
+  position: relative;
+  cursor: pointer;
+  border-bottom: 3px solid #ddd;
+  box-sizing: border-box;
   font-size: large;
-  font-weight: bold;
+}
+.nav_item::before {
+  background: #666;
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  margin: auto;
+  transform-origin: left top;
+  transform: scale(0, 1);
+  transition: transform 0.3s;
+}
+.nav_item:hover::before {
+  transform-origin: left top;
+  transform: scale(1, 1);
 }
 
-.driverselect p {
-  font-size: 0.9rem;
-  color: #999;
+.nav_item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #333;
 }
 
-.driverselect a:hover {
-  background-color: #f0f0f0;
+#drawer_input:checked ~ .nav_content {
+  left: 20%;
 }
-hr {
-  background-color: #000;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 60%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   background-color: #fff;
   border-radius: 8px;
   padding: 20px;
+  margin-top: 100px;
 }
-
+.chat_user {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-width: 100%;
+  height: 50px;
+  padding-left: 10px;
+  border-bottom: solid 1px #ccc;
+}
 .chcon {
   height: 100%;
   display: flex;
