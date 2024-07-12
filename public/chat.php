@@ -24,6 +24,13 @@ try{
             $chatid = 1;
         }
     
+    $sql = ("SELECT u_Name FROM `t_user` WHERE `u_Id` = '".$chatid."'"); 
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $your = $stmt->fetchAll();
+    $your1 = $your[0];
+
+
     $sql = ("SELECT * FROM `t_chat` WHERE `player` = '".$chatid."' OR `c_Partner` = '".$chatid."' ORDER BY CAST(`time` AS TIME) ASC"); 
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
@@ -84,7 +91,7 @@ try{
     <main>
         
         <div class="chat-container">
-            <h3 class="chat_user">物流拠点A</h3>
+            <h3 class="chat_user"><?php echo $your1[0]; ?></h3>
             <div class="chcon" id="chatContent">
                 <?php 
                 //chat表示
