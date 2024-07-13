@@ -38,75 +38,83 @@ if(isset($_SESSION['u_name'])){
   <main>
     <div id="wrap">
       <form action="db/submit.php" method="post">
-      <table>
-            <tr>
-              <td colspan="2"><h1>予約内容を入力してください</h1></td>
-            </tr>
-            <?php $today = date('Y-m-d'); ?>
-            <tr>
-                <td><label for="textbox1">運転者名</label></td>
-                <td><label for="textbox2">電話番号</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="driver_name" name="driver_name" value="<?php echo $loginuser ?>"></td>
-                <td><input type="text" id="tel_num" name="tel_num"></td>
-            </tr>
-            <tr>
-                <td><label for="textbox3">運送依頼会社名</label></td>
-                <td><label for="textbox4">運送会社名</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="b_name" name="b_name"></td>
-                <td><input type="text" id="trans_comp" name="trans_comp"></td>
-            </tr>
-            <tr>
-                <td><label for="textbox5">運送先</label></td>
-                <td><label for="textbox6">到着日付</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="arrival_point" name="arrival_point"></td>
-                <td><input type="date" id="a_date" name="a_date" min="<?php echo $today; ?>"></td>
-            </tr>
-            <tr>
-                <td><label for="textbox7">到着時刻</label></td>
-            </tr>
-            <tr>
-                <td><input type="time" id="a_time" name="a_time" ></td>
-            </tr>
-            <tr>
-                <td><label for="textbox9">ナンバープレート</label></td>
-                <td><label for="textbox10">車種</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="car_num" name="car_num"></td>
-                <td>        
-                  <select id="vehicle_size" name="vehicle_size">
-                    <option value="2トン車">2トン車</option>
-                    <option value="4トン車">4トン車</option>
-                    <option value="10トン車">10トン車</option>
-                    <option value="トレーラー">トレーラー</option>
-                    <option value="軽トラ">軽トラ</option>
-                    <option value="JRコンテナ">JRコンテナ</option>
-                  </select>
-            </td>
-            </tr>
-            <tr>
-                <td><label for="textbox11">商品名</label></td>
-                <td><label for="textbox12">数量(ケース)</label></td>
-            </tr>
-            <tr>
-                <td><input type="text" id="product_name" name="product_name"></td>
-                <td><input type="text" id="quantity" name="quantity"></td>
-            </tr>
-            
-            <tr>
-              <td></td>
-                <td>
-                    <input type="submit" value="送信">
-                </td>
-            </tr>
-        </table>
+
+
+
+
+      <div class="Form">
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 運転者氏名 </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）山田太郎" id="driver_name" name="driver_name" value="<?php echo $loginuser ?>">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 電話番号<br>(ハイフン無し) </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）09012345678"  id="tel_num" name="tel_num">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 運送依頼会社名 </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）〇〇〇株式会社" id="b_name" name="b_name">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 運送会社名 </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）XXX株式会社" id="trans_comp" name="trans_comp">
+        </div>                        
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 運送先 </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）物流拠点A" id="arrival_point" name="arrival_point">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 到着日付 </p>
+          <input type="date" class="Form-Item-Input"  id="a_date" name="a_date" min="<?php echo(date('Y-m-d')); ?>">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 到着時刻 </p>
+          <input type="time" class="Form-Item-Input" id="a_time" name="a_time">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> ナンバープレート </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）1234" id="car_num" name="car_num">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label">車種</p>
+          <select class="Form-Item-Input" id="vehicle_size" name="vehicle_size">
+            <option value="">選択してください</option>
+            <option value="2トン車">2トン車</option>
+            <option value="4トン車">4トン車</option>
+            <option value="10トン車">10トン車</option>
+            <option value="トレーラー">トレーラー</option>
+            <option value="軽トラ">軽トラ</option>
+            <option value="JRコンテナ">JRコンテナ</option>
+          </select>
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 商品名 </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）炒飯" id="product_name" name="product_name">
+        </div>
+
+        <div class="Form-Item">
+          <p class="Form-Item-Label"> 数量(ケース) </p>
+          <input type="text" class="Form-Item-Input" placeholder="例）24" id="quantity" name="quantity">
+        </div>
+
+
+        <input type="submit" class="Form-Btn" value="予約する">
+      </div>
+
+
+
       </form>
+
     </div>
 
   </main>

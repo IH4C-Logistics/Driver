@@ -23,7 +23,7 @@ $sql = ("INSERT INTO `t_reservation`(`contract_num`, `b_name`, `arrival_point`, 
 $res = $dbh->prepare($sql);
 $res->execute();
 
-header('Location: ../index.php');//後で予約完了ページを作りそこに飛ばす(予約番号表示する)
+//header('Location: ../index.php');//後で予約完了ページを作りそこに飛ばす(予約番号表示する)
 
 
 //後で消す///////////
