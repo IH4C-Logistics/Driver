@@ -39,7 +39,7 @@ if(isset($_SESSION['u_name'])){
     <div id="wrap">
       <form action="db/submit.php" method="post">
         <div class="Form">
-          <h2>鍼灸整骨院予約</h2>
+          <h2>新規予約</h2>
           <div class="Form-Item">
             <p class="Form-Item-Label"> 運転者氏名 </p>
             <input type="text" class="Form-Item-Input" placeholder="例）山田太郎" id="driver_name" name="driver_name" value="<?php echo $loginuser ?>">
