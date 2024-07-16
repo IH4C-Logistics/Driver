@@ -56,7 +56,7 @@ try{
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,8 +68,11 @@ try{
     <header class="header">
         <div class="logo"><a href="index.php"><img src="images/kkrn_icon_modoru_16.png" alt="return" class="return"></a></div>
         <div class="nav">
-        <input id="drawer_input" class="drawer_hidden" type="checkbox">
-        <label for="drawer_input" class="drawer_open"><span></span></label>
+        <input id="drawer_input" class="drawer_input" type="checkbox">
+        <label for="drawer_input" class="drawer_toggle" id="toggle_button">
+            <img src="images/upper_body-2.png" alt="" id="toggle_image">
+            <span id="close_button" style="display: none;"><img src="images/cross_hoso.png" alt="X" class="batu"></span>
+        </label>
         <nav class="nav_content">
             <div class="nav_list">
             <?php 
@@ -123,5 +126,15 @@ try{
             </div>
         </div>
     </main>
+
+    <script>
+
+        document.getElementById('drawer_input').addEventListener('change', function() {
+            const isChecked = this.checked;
+            document.getElementById('toggle_image').style.display = isChecked ? 'none' : 'inline';
+            document.getElementById('close_button').style.display = isChecked ? 'inline' : 'none';
+        });
+
+    </script>
 </body>
 </html>
