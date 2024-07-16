@@ -4,9 +4,9 @@ try {
     session_start();
 
     // セッションにユーザー名が設定されているか確認
-    $_SESSION['u_name'] = "ドライバーA";
+    //$_SESSION['u_name'] = "ドライバーA";
     if (isset($_SESSION['u_name'])) {
-        $buturyu_name = $_SESSION['u_name'];
+        $buturyu_name = $_SESSION['u_name'][0];
         
         // SQLインジェクション対策
         $sql = "SELECT u_Id FROM t_user WHERE u_Name = :u_name";
