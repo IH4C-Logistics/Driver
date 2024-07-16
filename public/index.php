@@ -1,4 +1,6 @@
 <?php
+
+require('db/dbpdo.php');
 session_start();
 if(isset($_SESSION['error'])){
     $error = $_SESSION['error'][0];
@@ -15,8 +17,14 @@ if (isset($_POST['logout'])) {
 if(isset($_SESSION['u_name'])){
   $loginuser = $_SESSION['u_name'][0];
 }else{
-  $loginuser = "なし";
+  $loginuser = '<a class="login_window">ログイン</a>';
 }
+
+$sql = "SELECT `contract_num` AS `契約番号`,`arrival_point` AS `到着地点`,`a_date` AS `到着日`,`a_time` AS `到着時間`
+FROM `t_reservation` WHERE driver_name = '". $loginuser ."'";
+$stmt = $dbh->prepare($sql);  
+$stmt->execute();
+$reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -27,7 +35,7 @@ if(isset($_SESSION['u_name'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>top</title>
   <link rel="stylesheet" href="css/index.css">
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -35,7 +43,7 @@ if(isset($_SESSION['u_name'])){
 <body>
 
   <header class="header">
-  <p><?php echo($loginuser."様"); ?></p>
+  <p><?php echo($loginuser); ?></p>
     <div class="nav">
       <input id="drawer_input" class="drawer_hidden" type="checkbox">
       <label for="drawer_input" class="drawer_open"><span></span></label>
@@ -49,7 +57,6 @@ if(isset($_SESSION['u_name'])){
             <?php } ?>
           </li>
           <li class="nav_item"><a href="reservation.php">新規予約</a></li>
-          <li class="nav_item"><a href="reservation_list.php">予約一覧</a></li>
           <li class="nav_item"><a href="chat.php">チャット</a></li>
           <li class="nav_item"><a href="camera.php">カメラ</a></li>
         </ul>
@@ -80,55 +87,79 @@ if(isset($_SESSION['u_name'])){
   </div>
 
   <main>
-</main>
+    <div id="wrap">
+      <h2>予約情報一覧</h2>
+      <p>詳細確認または修正するには、予約番号をクリックしてください。</p>
+      <?php if (!empty($reservation)): ?>
+      <table class="design">
+        <tr>
+          <?php foreach (array_keys($reservation[0]) as $header): ?>
+            <th><?php echo htmlspecialchars($header); ?></th>
+          <?php endforeach; ?>
+        </tr>
+        <?php foreach ($reservation as $row): ?>
+          <tr>
+            <?php foreach ($row as $key => $cell): ?>
+              <?php if ($key === '契約番号'): ?>
+                <td><a href="resevation_change.php?key=<?php echo $cell; ?>"><?php echo htmlspecialchars($cell); ?></a></td>
+              <?php else: ?>
+                <td><?php echo htmlspecialchars($cell); ?></td>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+      <?php endif; ?>
+    </div>
+  </main>
 
 
 
 
-    <!-- ログイン用 -->
-    <script>
-    $(document).on('click', '.login_window', function() {
-        // 背景をスクロールできないように & スクロール場所を維持
-        scroll_position = $(window).scrollTop();
-        $('body').addClass('fixed').css({ 'top': -scroll_position });
-        // モーダルウィンドウを開く
-        $('.login_modal').fadeIn();
-        $('.modal').fadeIn();
-    });
+  <!-- ログイン用 -->
+  <script>
+  $(document).on('click', '.login_window', function() {
+      // 背景をスクロールできないように & スクロール場所を維持
+      scroll_position = $(window).scrollTop();
+      $('body').addClass('fixed').css({ 'top': -scroll_position });
+      // モーダルウィンドウを開く
+      $('.login_modal').fadeIn();
+      $('.modal').fadeIn();
+  });
 
-    $(document).on('click', '.modal', function() {
-        // 背景スクロールを再開し、モーダルを閉じる
-        $('body').removeClass('fixed').css({ 'top': '' });
-        $(window).scrollTop(scroll_position);
-        $('.login_modal').fadeOut();
-        $('.modal').fadeOut();
-    });
+  $(document).on('click', '.modal', function() {
+      // 背景スクロールを再開し、モーダルを閉じる
+      $('body').removeClass('fixed').css({ 'top': '' });
+      $(window).scrollTop(scroll_position);
+      $('.login_modal').fadeOut();
+      $('.modal').fadeOut();
+  });
 
-    $(document).on('click', '.close', function() {
-        // 背景スクロールを再開し、モーダルを閉じる
-        $('body').removeClass('fixed').css({ 'top': '' });
-        $(window).scrollTop(scroll_position);
-        $('.login_modal').fadeOut();
-        $('.modal').fadeOut();
-    });
+  $(document).on('click', '.close', function() {
+      // 背景スクロールを再開し、モーダルを閉じる
+      $('body').removeClass('fixed').css({ 'top': '' });
+      $(window).scrollTop(scroll_position);
+      $('.login_modal').fadeOut();
+      $('.modal').fadeOut();
+  });
 
-    $(document).on('click', '.logout_window', function() {
-        // 背景をスクロールできないように & スクロール場所を維持
-        scroll_position = $(window).scrollTop();
-        $('body').addClass('fixed').css({ 'top': -scroll_position });
-        // モーダルウィンドウを開く
-        $('.logout_modal').fadeIn();
-        $('.modal').fadeIn();
-    });
+  $(document).on('click', '.logout_window', function() {
+      // 背景をスクロールできないように & スクロール場所を維持
+      scroll_position = $(window).scrollTop();
+      $('body').addClass('fixed').css({ 'top': -scroll_position });
+      // モーダルウィンドウを開く
+      $('.logout_modal').fadeIn();
+      $('.modal').fadeIn();
+  });
 
-    $(document).on('click', '.modal', function() {
-        // 背景スクロールを再開し、モーダルを閉じる
-        $('body').removeClass('fixed').css({ 'top': '' });
-        $(window).scrollTop(scroll_position);
-        $('.logout_modal').fadeOut();
-        $('.modal').fadeOut();
-    });
-</script>
+  $(document).on('click', '.modal', function() {
+      // 背景スクロールを再開し、モーダルを閉じる
+      $('body').removeClass('fixed').css({ 'top': '' });
+      $(window).scrollTop(scroll_position);
+      $('.logout_modal').fadeOut();
+      $('.modal').fadeOut();
+  });
+  </script>
 
 </body>
 </html>

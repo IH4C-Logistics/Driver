@@ -21,18 +21,7 @@ if(isset($_SESSION['u_name'])){
 
   <header class="header">
     <div class="logo"><a href="index.php"><img src="images/kkrn_icon_modoru_16.png" alt="return" class="return"></a></div>
-      <div class="nav">
-        <input id="drawer_input" class="drawer_hidden" type="checkbox">
-        <label for="drawer_input" class="drawer_open"><span></span></label>
-        <nav class="nav_content">
-          <ul class="nav_list">
-            <li class="nav_item"><a href="reservation.php">新規予約</a></li>
-            <li class="nav_item"><a href="reservation_list.php">予約一覧</a></li>
-            <li class="nav_item"><a href="chat.php">チャット</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  </header>
 
   <main>
     <div id="wrap">

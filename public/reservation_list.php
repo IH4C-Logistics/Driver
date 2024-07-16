@@ -47,12 +47,9 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <main>
     <div id="wrap">
-
-
-    <h2>予約情報一覧</h2>
-    <p>詳細確認または修正するには、予約番号をクリックしてください。</p>
-
-    <?php if (!empty($reservation)): ?>
+      <h2>予約情報一覧</h2>
+      <p>詳細確認または修正するには、予約番号をクリックしてください。</p>
+      <?php if (!empty($reservation)): ?>
       <table class="design">
         <tr>
           <?php foreach (array_keys($reservation[0]) as $header): ?>
@@ -71,11 +68,8 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
           </tr>
         <?php endforeach; ?>
       </table>
-    <?php endif; ?>
-
-    
+      <?php endif; ?>
     </div>
-    
   </main>
 
 </body>

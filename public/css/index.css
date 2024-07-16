@@ -131,11 +131,6 @@ body::-webkit-scrollbar {
   left: 60%;
 }
 
-main {
-  padding-top: 70px;
-  height: 1000px;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -222,6 +217,7 @@ main {
   top: 40%;
   left: 50%;
   padding: 20px;
+  width: 60%;
   background-color: #fff;
   border-radius: 8px;
   -webkit-transform: translate(-50%, -10%);
@@ -246,4 +242,47 @@ main {
 }
 #logout_form button:hover {
   background-color: #bbb;
+}
+
+main {
+  width: 90%;
+  justify-content: center;
+  margin: auto;
+  padding: 70px 0 0 0px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+th,
+td {
+  padding: 8px;
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+
+.design {
+  margin: auto;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow-x: scroll;
+  font-size: small;
+}
+.design th {
+  padding: 10px;
+  background: #778ca3;
+  border: solid 1px #666666;
+  color: #ffffff;
+}
+.design td {
+  padding: 10px;
+  border: solid 1px #666666;
+}
+.design td:first-child {
+  background: #e9faf9;
 }
