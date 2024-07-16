@@ -10,7 +10,7 @@ if(isset($_SESSION['u_name'])){
 //echo($loginuser);
 
 
-$sql = "SELECT `contract_num` AS `契約番号`,`arrival_point` AS `到着地点`,`a_date` AS `到着日`,`a_time` AS `到着時間`
+$sql = "SELECT `contract_num` AS `予約番号`,`arrival_point` AS `到着地点`,`a_date` AS `到着日`,`a_time` AS `到着時間`
 FROM `t_reservation` WHERE driver_name = '". $loginuser ."'";
 $stmt = $dbh->prepare($sql);  
 $stmt->execute();
