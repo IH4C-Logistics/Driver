@@ -58,7 +58,8 @@ if(isset($_SESSION['u_name'])){
             <input type="mail" id="mail" name="mail" required>
             <label for="password">パスワード</label>
             <input type="password" id="password" name="password" required>
-            <button type="submit">ログイン</button>
+            <button type="submit" class="button">ログイン</button>
+            <button class="close">閉じる</button>
         </form>
     </div>
 
@@ -93,6 +94,14 @@ if(isset($_SESSION['u_name'])){
         $('.login_modal').fadeOut();
         $('.modal').fadeOut();
     });
+
+    $(document).on('click', '.close', function() {
+        // 背景スクロールを再開し、モーダルを閉じる
+        $('body').removeClass('fixed').css({ 'top': '' });
+        $(window).scrollTop(scroll_position);
+        $('.login_modal').fadeOut();
+        $('.modal').fadeOut();
+});
 </script>
 
 </body>

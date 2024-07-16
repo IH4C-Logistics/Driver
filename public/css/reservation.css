@@ -144,69 +144,64 @@ main{
 #wrap{
     display: flex;
     justify-content: center;
-    padding-top: 70px;
+    width: 100%;
+    margin: auto;
+    padding: 70px 0 0 0;
+    margin-bottom: 60px;
 }
 
 
 .Form {
-  margin-top: 80px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .Form-Item {
-  border-top: 1px solid #ddd;
-  padding-top: 24px;
-  padding-bottom: 24px;
   width: 100%;
-  display: flex;
-  align-items: center;
-
+  padding: 10px 0;
   display: block;
-}
-
-
-.Form-Item:nth-child(5) {
   border-bottom: 1px solid #ddd;
 }
+
 .Form-Item-Label {
-  width: 100%;
-  max-width: 200px;
   letter-spacing: 0.05em;
   font-weight: bold;
   font-size: 18px;
+  text-align: start;
 }
 
-
-
 .Form-Item-Input {
+  display: block;
   border: 1px solid #ddd;
   border-radius: 6px;
-  padding-left: 1em;
-  padding-right: 1em;
-  height: 48px;
-  flex: 1;
   width: 100%;
+  max-width: 100%;
+  margin-bottom: 5px;
+  padding: 10px 0;
   background: #eaedf2;
   font-size: 18px;
 }
 
 
 .Form-Btn {
-  border-radius: 6px;
-  margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  width: 280px;
+  border-radius: 6px; 
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: block;
   letter-spacing: 0.05em;
   background: #5bc8ac;
   color: #fff;
   font-weight: bold;
   font-size: 20px;
+  border: none;
 }
 
 /* フォーム */
