@@ -62,7 +62,7 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($reservation as $row): ?>
           <tr>
             <?php foreach ($row as $key => $cell): ?>
-              <?php if ($key === '契約番号'): ?>
+              <?php if ($key === '予約番号'): ?>
                 <td><a href="resevation_change.php?key=<?php echo $cell; ?>"><?php echo htmlspecialchars($cell); ?></a></td>
               <?php else: ?>
                 <td><?php echo htmlspecialchars($cell); ?></td>
