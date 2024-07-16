@@ -88,8 +88,17 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <main>
     <div id="wrap">
-      <h2>予約情報一覧</h2>
-      <p>詳細確認または修正するには、予約番号をクリックしてください。</p>
+      <?php
+       if(isset($_SESSION['u_name'])){
+      ?>
+        <h2>予約情報一覧</h2>
+        <p>詳細確認または修正するには、予約番号をクリックしてください。</p>
+      <?php
+        } else {?>
+          <h2>リサーブマネ―ジシステム</h2>
+          <p>左上からログインをしてください。</p>
+      <?php  }
+      ?>
       <?php if (!empty($reservation)): ?>
       <table class="design">
         <tr>
