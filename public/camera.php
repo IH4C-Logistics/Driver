@@ -55,63 +55,43 @@ try {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Example</title>
-    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/camera.css">
 </head>
 <body>
 
     <header class="header">
         <div class="logo"><a href="index.php"><img src="images/kkrn_icon_modoru_16.png" alt="return" class="return"></a></div>
-        <div class="nav">
-            <input id="drawer_input" class="drawer_hidden" type="checkbox">
-            <label for="drawer_input" class="drawer_open"><span></span></label>
-            <nav class="nav_content">
-                <div class="nav_list">
-                <?php foreach ($userList as $item): ?>
-                    <div class="nav_item">
-                        <a href="camera.php?userID=<?php echo htmlspecialchars($item['u_Id'], ENT_QUOTES, 'UTF-8'); ?>" class="button">
-                            <h4><?php echo htmlspecialchars($item['u_Name'], ENT_QUOTES, 'UTF-8'); ?></h4>
-                            <p>拠点カメラ</p>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-                </div>
-            </nav>
-        </div>
     </header>
 
     <main>
-        <div class="chat-container">
-            <?php if ($selectedUser): ?>
-                <h3 class="chat_user"><?php echo htmlspecialchars($selectedUser['u_Name'], ENT_QUOTES, 'UTF-8'); ?></h3>
-
-                <?php 
-                // 基本の YouTube URL を設定
-                $youtubeUrls = [
-                    '物流拠点A' => 'https://youtu.be/oyxdKe7cj3s',
-                    '物流拠点B' => 'https://youtu.be/gHWoLGdhRxY',
-                ];
-
-                // ユーザー名に基づいて URL を決定
-                $dynamicUrl = isset($youtubeUrls[$selectedUser['u_Name']]) 
-                    ? $youtubeUrls[$selectedUser['u_Name']] 
-                    : 'https://youtu.be/';
-                ?>
-
-                <a href="<?php echo htmlspecialchars($dynamicUrl, ENT_QUOTES, 'UTF-8'); ?>" target="_blank">
-                    <?php echo htmlspecialchars($selectedUser['u_Name'], ENT_QUOTES, 'UTF-8'); ?> の YouTube 動画です。
-                </a>
-
-                <div class="chcon" id="chatContent">
-                    <!-- 領域調整用              -->
+        <div class="container">
+            <div class="camera_list">
+                <?php foreach ($userList as $item): ?>
+                <div class="nav_item">
+                    <a href="camera.php?userID=<?php echo htmlspecialchars($item['u_Id'], ENT_QUOTES, 'UTF-8'); ?>" class="button">
+                        <h4><?php echo htmlspecialchars($item['u_Name'], ENT_QUOTES, 'UTF-8'); ?></h4>
+                        <p>拠点カメラ</p>
+                    </a>
                 </div>
-            <?php else: ?>
-                <p>選択された拠点がありません。</p>
-            <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+            <div class="camera_container">
+                <h3 class="chat_user"><?php echo htmlspecialchars($selectedUser['u_Name'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                <?php if ($selectedUser['u_Name'] == '物流拠点A'): ?>
+                    <!-- A -->
+                    <iframe width="100%" height="250px" src="https://www.youtube.com/embed/oyxdKe7cj3s?si=1M0hue-IIkmkpJsZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <?php elseif ($selectedUser['u_Name'] == '物流拠点B'): ?>
+                    <!-- B -->
+                    <iframe width="100%" height="250px" src="https://www.youtube.com/embed/gHWoLGdhRxY?si=o6bbcBAmLNI0yCix" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <?php else: ?>
+                    <p>選択された物流拠点が無効です。</p>
+                <?php endif; ?>
+            </div>
         </div>
     </main>
 </body>

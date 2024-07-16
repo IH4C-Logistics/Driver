@@ -51,6 +51,7 @@ if(isset($_SESSION['u_name'])){
           <li class="nav_item"><a href="reservation.php">新規予約</a></li>
           <li class="nav_item"><a href="reservation_list.php">予約一覧</a></li>
           <li class="nav_item"><a href="chat.php">チャット</a></li>
+          <li class="nav_item"><a href="camera.php">カメラ</a></li>
         </ul>
       </nav>
     </div>
