@@ -39,7 +39,7 @@ $reservation = $stmt->fetch(PDO::FETCH_ASSOC); // 1行のみ取得
 <body>
 
   <header class="header">
-    <p><?php // echo($loginuser."様"); ?></p>
+    <div class="logo"><a href="reservation_list.php"><img src="images/kkrn_icon_modoru_16.png" alt="return" class="return"></a></div>
     <div class="nav">
       <input id="drawer_input" class="drawer_hidden" type="checkbox">
       <label for="drawer_input" class="drawer_open"><span></span></label>
