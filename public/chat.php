@@ -5,9 +5,9 @@ try{
     require('db/dbpdo.php');
     session_start();
     //物流IDがSESSIONに登録されているか確認
-    $_SESSION['u_name'] = "ドライバーA";
+    //$_SESSION['u_name'] = "ドライバーA";
     if(isset($_SESSION['u_name'])){
-        $buturyu_name = $_SESSION['u_name'];
+        $buturyu_name = $_SESSION['u_name'][0];
         $sql = "SELECT u_Id FROM t_user WHERE u_Name = '". $buturyu_name ."'";
         $stmt = $dbh->prepare($sql);  
         $stmt->execute();
@@ -31,7 +31,8 @@ try{
     $your1 = $your[0];
 
 
-    $sql = ("SELECT * FROM `t_chat` WHERE `player` = '".$chatid."' OR `c_Partner` = '".$chatid."' ORDER BY CAST(`time` AS TIME) ASC"); 
+    //$sql = ("SELECT * FROM `t_chat` WHERE `player` = '".$chatid."' OR `c_Partner` = '".$chatid."' ORDER BY CAST(`time` AS TIME) ASC");
+    $sql = ("SELECT * FROM `t_chat` WHERE `player` = '".$chatid."' OR `c_Partner` = '".$chatid."' ORDER BY `time` ASC"); 
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $chat = $stmt->fetchAll(PDO::FETCH_ASSOC);
