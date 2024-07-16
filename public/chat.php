@@ -83,7 +83,7 @@ try{
                 <div class="nav_item">
                     <a href="chat.php?userID=<?php echo $user; ?>" class="button">
                         <h4><?php echo($item['u_Name']); ?></h4>
-                        <p>最新のチャット入れたいね♡</p>
+                        <p></p>
                     </a>
                 </div>
             <?php endforeach; ?>
