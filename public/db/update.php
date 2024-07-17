@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $dbh->query($sql);
     
 
-    header('Location: ../reservation_list.php'); // 更新後にリダイレクト
+    header('Location: ../index.php'); // 更新後にリダイレクト
     exit();
 }
 ?>
